@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('users')->truncate();
         $faker = Factory::create();
         for ($i = 0; $i < 20; $i++) {
             $fakerName = $faker->userName;
