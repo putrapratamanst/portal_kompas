@@ -18,6 +18,7 @@ class CreateArticlesTable extends Migration
             $table->integer('author_id');
             $table->string('title');
             $table->text('body');
+            $table->text('photo')->nullable();
             $table->integer('page_view');
             $table->date('published_date');
             $table->integer('status');
