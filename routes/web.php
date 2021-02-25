@@ -13,10 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'ArticleController@indexDashboard')->name('home')->middleware('auth');;
+Route::get('/', 'ArticleController@index')->name('blog');
+
+Route::GET('article/{id}', 'ArticleController@detail')->middleware('auth');
+Route::GET('article/edit/{id}', 'ArticleController@edit')->middleware('auth');
+Route::PUT('article/update/{id}', 'ArticleController@update')->middleware('auth');;
+Route::PATCH('article/change/{id}', 'ArticleController@changeStatus')->middleware('auth');;
+Route::GET('article/create', 'ArticleController@create')->name('create')->middleware('auth');;
+Route::POST('article/insert', 'ArticleController@insert')->middleware('auth');;
+Route::DELETE('article/delete/{id}', 'ArticleController@delete')->middleware('auth');;
+
